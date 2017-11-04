@@ -57,3 +57,12 @@ pause
 
 %% Part c
 
+laplaceKernel = [0 -1 0; -1 4 -1; 0 -1 0];
+
+laplaceFilteredImage = filter2(laplaceKernel, blurrymoon);
+
+laplaceSharpened = blurrymoon + uint8(laplaceFilteredImage);
+
+imshow(laplaceSharpened)
+title('laplace sharpeneing of blurry moon')
+pause
