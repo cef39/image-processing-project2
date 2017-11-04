@@ -1,0 +1,25 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Problem 2.1
+
+open gaussKernel.m
+
+w = gaussKernel(3, 0.75)
+w2 = gaussKernel(10, 0.75)
+w3 = gaussKernel(25, 0.75)
+
+testPattern = imread('testpattern.tif');
+imshow(testPattern)
+pause
+
+blur = filter2(w, testPattern);
+imshow(blur)
+pause
+
+blur2 = filter2(w2, testPattern);
+imshow(blur2)
+pause
+
+blur3 = filter2(w3, testPattern);
+imshow(blur3)
+pause
+
