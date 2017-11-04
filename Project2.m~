@@ -3,9 +3,7 @@
 
 open gaussKernel.m
 
-w = gaussKernel(3, 0.75)
-w2 = gaussKernel(10, 0.75)
-w3 = gaussKernel(25, 0.75)
+w = gaussKernel(12, 2)
 
 testPattern = imread('testpattern.tif');
 imshow(testPattern)
@@ -15,11 +13,44 @@ blur = filter2(w, testPattern);
 imshow(blur)
 pause
 
-blur2 = filter2(w2, testPattern);
-imshow(blur2)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Problem 2.2
+
+%% Part a
+
+
+blurrymoon = imread('blurrymoon.tif');
+
+%% Gaussian blurring kernel
+kernel = fspecial('Gaussian', 32, 8);
+
+%% apply blurring kernel to image to get blurred image
+blurredImage = imfilter(blurrymoon, kernel, 'replicate');
+
+%% create unsharp mask by subtracting smoothed image from original image
+unsharpMask = blurrymoon - blurredImage;
+
+%% perform unsharp masking by adding unsharp mask to original image
+sharpedImage = blurrymoon + unsharpMask;
+
+imshow(blurrymoon)
+title('image of blurry moon')
 pause
 
-blur3 = filter2(w3, testPattern);
-imshow(blur3)
+% imshow(unsharpMask)
+% title('unsharp mask of blurrymoon')
+% pause
+
+imshow(sharpedImage)
+title('sharpened image of blurry moon')
 pause
 
+
+%% Part b
+
+highboost = blurrymoon + 2*unsharpMask;
+
+imshow(highboost)
+title('highboost filtering of blurry moon')
+pa

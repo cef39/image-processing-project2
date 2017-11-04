@@ -48,3 +48,12 @@ pause
 
 
 %% Part b
+
+highboost = blurrymoon + 2*unsharpMask;
+
+imshow(highboost)
+title('highboost filtering of blurry moon')
+pause
+
+%% Part c
+
