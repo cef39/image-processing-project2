@@ -3,14 +3,22 @@
 
 open gaussKernel.m
 
-w = gaussKernel(12, 2)
+w = gaussKernel(60, 25);
 
-testPattern = imread('testpattern.tif');
-imshow(testPattern)
+testPattern = double(imread('testpattern.tif'));
+imshow(uint8(testPattern))
 pause
 
 blur = filter2(w, testPattern);
-imshow(blur)
+
+
+blurm = blur - min(min(blur));
+% scale image
+blurs = 255*(blurm./max(max(blurm)));
+
+%imshow(uint8(blur))
+%pause
+imshow(uint8(blurs))
 pause
 
 
