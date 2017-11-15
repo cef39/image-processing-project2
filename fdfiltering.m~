@@ -1,0 +1,26 @@
+function g = fdfiltering(f, H)
+
+% creating padded image of size 2Px2Q
+fsize = size(f);
+P = fsize(1,1) * 2;
+Q = fsize(1,2) * 2;
+
+fpadded = zeros(P, Q);
+
+g(1:fsize(1,1), 1:fsize(1,2)) = f;
+
+%multiply by (-1)^(x + y) to center transform
+for x = 1:P
+    for y = 1:Q
+        g(x, y) = g(x, y) .* ((-1).^(x + y));
+    end
+end
+
+% computer dft of image
+g = fft2(g);
+
+% multiply g by H now
+g = g .* H;
+
+
+
